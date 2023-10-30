@@ -33,10 +33,10 @@ For your reference, here is a table depicting anchors with their description:</b
 
 | Anchor | Description |
 | ------ | ----------- |
-| `^` | `Beginning` Matches the beginning of the string, or the beginning of a line if the multiline flag (m) is enabled. |
-| `$` | `End` Matches the end of the string, or the end of a line if the multiline flag (m) is enabled. |
-| `\b` | `Word Boundary` Matches a word boundary position between a word character and non-word character or position (start / end of string). |
-| `\B` | `Not Word Boundary` Matches any position that is not a word boundary. This matches a position, not a character. |
+| ^ | `Beginning` Matches the beginning of the string, or the beginning of a line if the multiline flag (m) is enabled. |
+| $ | `End` Matches the end of the string, or the end of a line if the multiline flag (m) is enabled. |
+| \b | `Word Boundary` Matches a word boundary position between a word character and non-word character or position (start / end of string). |
+| \B | `Not Word Boundary` Matches any position that is not a word boundary. This matches a position, not a character. |
 
 ### Quantifiers
 
