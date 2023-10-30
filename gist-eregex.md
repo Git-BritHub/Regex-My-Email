@@ -27,6 +27,16 @@ A regex is considered a literal, so the pattern must be wrapped in forward facin
 <br><code> /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ </code></br>
 
 ### Anchors
+Anchors are unique in that they match a position within a string, not a character.
+In our 'matching an email' regex: `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`, the characters `^` and `$` are both considered to be anchors. `^` signifies the beginning of the string while `$` signifies the end. </br>
+For your reference, here is a table depicting anchors with their description:</br>
+
+| Anchor | Description |
+| ------ | ----------- |
+| `^` | `Beginning` Matches the beginning of the string, or the beginning of a line if the multiline flag (m) is enabled. |
+| `$` | `End` Matches the end of the string, or the end of a line if the multiline flag (m) is enabled. |
+| `\b` | `Word Boundary` Matches a word boundary position between a word character and non-word character or position (start / end of string). |
+| `\B` | `Not Word Boundary` Matches any position that is not a word boundary. This matches a position, not a character. |
 
 ### Quantifiers
 
