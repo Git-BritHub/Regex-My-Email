@@ -39,14 +39,14 @@ For your reference, here is a table depicting anchors with their description:</b
 | \B | `Not Word Boundary` Matches any position that is not a word boundary. This matches a position, not a character. |
 
 ### Quantifiers
-Quantifiers indicate that the preceding token must be matched a certain number of times. By default, quantifiers are greedy and will match as many characters as possible! In our 'Matching an Email' regex `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`, the `{2,6}` portion of our regex is a quantifier and it matches 2 to 6 lowercase letters or dots for the TLD part of a web address.</br>
+Quantifiers indicate that the preceding token must be matched a certain number of times. By default, quantifiers are greedy and will match as many characters as possible! In our 'Matching an Email' regex `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`, the `{2,6}` portion of our regex is a quantifier and it matches 2 to 6 lowercase letters or dots for the TLD part of a web address (.com, .net, .uk, etc). </br>
 For example, let's say we have email addresses named `email@example.com` or `email@example.co`. Both email addresses would be accepted as a match and validated since `.com` and `.co` fall within the 2-6 character range. An email such as `email@example.c` or `email@example.coooooom` would not pass email validation.</br>
 For your reference, here is a table depicting quantifiers with their description:</br>
 
 | Quantifiers | Description |
 | ----------- | ----------- |
-| + | `Plus` Matches 1 or more of the preceding item. |
 | * | `Star` Matches 0 or more of the preceding item. |
+| + | `Plus` Matches 1 or more of the preceding item. |
 | ? | `Optional` Matches 0 or 1 of the preceding item, effectively making it optional. |
 | {n,m} | `Quantifier`: `{n,m}` matches between `n` and `m`. For example, `{2,6}` will match 2 to 6 like in our example above. | 
 | {n} | `Quantifier`: `{n}` matches exactly `n` occurences. For example example, `{6}` will match exactly 6. |
