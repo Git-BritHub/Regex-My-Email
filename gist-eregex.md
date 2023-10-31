@@ -53,6 +53,13 @@ For your reference, here is a table depicting quantifiers with their description
 | {n,} | `Quantifier`: `{n,}`matches at least `n` occurences. For for example, `{6,}`, will match 6 or more. |
 
 ### OR Operator
+An OR Operator is a logical operator used in programming and various other contexts to perform a choice between two or more alternatives. In a regex, the symbol `|` acts as an OR Operator. How is this useful to our regex `^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$` you may ask? In this instance, you could use this alternation `|` to match email addresses from different email providers like Gmail, Yahoo, Outlook, etc. For example:</br>
+`^([a-z0-9_\.-]+)@(gmail\.com|yahoo\.com|outlook\.com)$`</br>
+In this regex that inputs `|` after each TDL, it proceeds to match email address with the local part followed by one of the specified domain names such as the email providers I mentioned above.</br>
+You can also use an OR Operator to match email domains with or without subdomains like in the following example:</br>
+`^([a-z0-9_\.-]+)@(([\da-z\.-]+\.[a-z\.]{2,6})|([a-z\.-]+\.[a-z\.]{2,6}))$`</br>
+This regex example allows for domain names like 'emailexample.com' or 'sub.emailexample.com'.</br></br>
+In short, the OR Operator allows you to specify multiple alternative patterns! 
 
 ### Character Classes
 
