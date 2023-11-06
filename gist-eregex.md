@@ -6,7 +6,7 @@ A Regular Expression (Regex) tutorial for matching an email
 
 In this tutorial, we'll be covering the regex components used to verify a user's provided email. The following regex is a simple and common one used for matching an email to ensure its validity:
 <br><code> /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ </code></br>
-Depending on how strict you want your email validation process to be, the regex needed for matching an email will differ. We'll go over what each character and symbol does with a quick and simple description.
+Depending on how strict you'd like your email validation process to be, the regex needed for matching an email will differ. We'll go over what each character and symbol does with a detailed description of each type.
 
 ## Table of Contents
 
@@ -58,10 +58,25 @@ An OR Operator is a logical operator used in programming and various other conte
 In this regex that inputs `|` after each TDL, it proceeds to match email address with the local part followed by one of the specified domain names such as the email providers I mentioned above.</br>
 You can also use an OR Operator to match email domains with or without subdomains like in the following example:</br>
 `^([a-z0-9_\.-]+)@(([\da-z\.-]+\.[a-z\.]{2,6})|([a-z\.-]+\.[a-z\.]{2,6}))$`</br>
-This regex example allows for domain names like 'emailexample.com' or 'sub.emailexample.com'.</br></br>
-In short, the OR Operator allows you to specify multiple alternative patterns! 
+This regex example allows for domain names like 'example.com' or 'sub.example.com' to be used.</br></br>
+In short, the OR Operator `|` allows you to specify multiple alternative patterns! 
 
 ### Character Classes
+A character class in a regex defines a set of characters. There are a number of predefined character classes and you can also define your own sets!</br>
+So in regards to our regex `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/` for matching an email, the implimentation of character classes are vital in quickly and effeciently ensuring that an email address provided by the user is valid. For example, the portion enclosed with brackets `[]` in our regex that displays `a-z` (referred to as `Range`) is telling us that a valid email can inlcude letters that range all the way from `"a"` to `"z"`.  Below is a table of more character classes for your reference:</br>
+
+| Character Classes | Description | Example |
+| ----------------- | ----------- | ------- |
+| [ABC] | `Character Set` matches any character in the set. | If desiring to find/match the letters "b" or "d" you'd use `[bd]` |
+| [^ABC] | `Negated Set` matches any character that is not in the set. | If desiring to find/match all letters besides `"h"` or `"o"` in the word `"hello"`, only the letters `"ell"` would match or be considered valid. |
+| [A-Z] | `Range` matches a character having a character code between the two specified characters inclusive. | If wanting to match or validate all letters of the alphabet, including `a-z` in brackets `[]` like `[a-z]` would allow this. If you did `[c-f]`, only the letters "c", "d", "e" |
+| . | `Dot` matches any character except the newline characters/linebreakes. `.` is equivalent to `[^\n\r]`. | If you have the regex pattern `a.b`, it could match "aab", "axb", "a1b" "a@b" and so on. |
+| \s | `Match Any: Whitespace` matches a single whitespace character, including spaces, tabs, and line breaks. | If using `\s` in a phrase or sentence that has spaces inbetween words, those spaces would be matched. | 
+| \S | `Match Any: Not Whitespace` matches any character that is NOT a whitespace character | If using `\S`, everything but spaces, tabs or linebreaks would match. |
+| \w | `Word` matches any word character (alphanumeric & underscore). Only matches low-ascii characters (no accented or non-roman characters). | Equivalent to [A-Za-z0-9_]. |
+| \W | `Not Word` matches any character that is NOT a word character (alphanumeric & underscore). | Equivalent to [^A-Za-z0-9_]. |
+| \d | `Digit` matches any digit character (0-9). | Equivalent to [0-9]. |
+| \D | `Not Digit` matches any character that is not a digit character (0-9). | Equivalent to [^0-9]. |
 
 ### Flags
 
