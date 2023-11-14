@@ -118,6 +118,12 @@ As mentioned above in the [Quantifiers](#quantifiers) section, `Quantifiers` are
 Boundaries indicate the beginnings and endings of lines and words, and other patters indicating in some way that a match is possible. These inlcude `look-ahead`, `look-behind` (of which we'll cover in a couple of sections), along with conditional expressions. These boundaries include the characters `^`, `$`, `\b`, and `\B` that we covered in the [Anchors](#anchors) section above. As well as `x(?=y)`, `x(?!y)`, `(?<=y)x`, and `(?<!y)x` that we will cover in the [Look-ahead and Look-behind](#look-ahead-and-look-behind) section. 
 
 ### Back-references
+Groups group multiple patterns as a whole, and capturing groups provide extra submatch information when using a regular expression pattern to match against a string. Backreferences refer to a previously captured group in the same regular expression. For reference, I've included a table of Back-References below:
+
+| Back-Reference | Description | Example |
+| -------------- | ----------- | ------- |
+| \n | Where `n` is a positive integer, a back-reference to the last substring matching the `n` parenthetical in the regular expression. | `/apple(,)\sorange\1/` matches 'apple, orange' in 'apple, orange, cherry, peach'. |
+| \k<Name> | A back-reference to the last substring matching the 'Named Capture Group' specified by `<Name>`. | `/(?<title>\w+)`, yes `\k<title>/` matches 'Sir, yes Sir' in 'Do you copy? Sir, yes Sir!'. |
 
 ### Look-ahead and Look-behind
 
