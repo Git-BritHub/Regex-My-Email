@@ -93,9 +93,9 @@ So in regards to our regex `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/` f
 | s | `Dotall` or `Dot` `.` will match any character, including newline. |  |
 
 ### Grouping and Capturing
-Groups allow you to combine a sequence of tokens to operate on them together. Capture groups can be referenced by a backreference and accessed separately in the results. For reference, I've included a table of Groups and References below:
+Groups allow you to combine a sequence of tokens to operate on them together. Capture groups can be referenced by a backreference and accessed separately in the results. For reference, I've included a table of Groups and Capturing below:
 
-| Groups & References | Description | Example |
+| Groups & Capturing | Description | Example |
 | ------------------- | ----------- | ------- |
 | (ABC) | `Capturing Group` groups multiple tokens together and creates a capture group for extracting a substring or using a backreference. | Using `(ha)+` for 'hahaha haa hah!' will capture the `ha``ha``ha` `ha`a `ha`h! portion of it |
 | (?<name>ABC) | `Named Capturing Group` creates a capturing group that can be referenced via the specified name. |  |
@@ -141,6 +141,72 @@ Groups group multiple patterns as a whole, and capturing groups provide extra su
 | (?<!y>)x | `Negative Lookbehind Assertion` | `/(?<!-)\d+/` matches a number only if it is not preceded by a minus sign. `/(?<!-)\d+/.exec('3')` matches "3". `/(?<!-)\d+/.exec('-3')` match is not found because the number is preceded by the minus sign. |
 
 ## Conclusion and Quick-Reference Table
+
+| Anchor | Description | Example |
+| ------ | ----------- | ------- |
+| ^ | `Beginning` Matches the beginning of the string, or the beginning of a line if the multiline flag (m) is enabled. | In the example 'she sells seashells', `^\w+` matches the word 'she'. |
+| $ | `End` Matches the end of the string, or the end of a line if the multiline flag (m) is enabled. | In the example 'she sells seashells', `\w+$` matches the word 'seashells'. |
+| \b | `Word Boundary` Matches a word boundary position between a word character and non-word character or position (start / end of string). | In the example 'she sells seashells', `s\b` matches the letters 's' in 'she sells`s` seashell`s`'. |
+| \B | `Not Word Boundary` Matches any position that is not a word boundary. This matches a position, not a character. | In the example 'she sells seashells', `s\B` matches the letters 's' in '`s`he `s`ells `s`ea`s`hells'. |
+| Quantifiers | Description | Example |
+| ----------- | ----------- | ------- |
+| * | `Star` Matches 0 or more of the preceding item. | In the example 'b be bee beer beers', `b\w*` matches '`b``be``bee``beer``beers`'. |
+| + | `Plus` Matches 1 or more of the preceding item. | In the example 'b be bee beer beers', `b\w+` matches 'b `be` `bee` `beer` `beers`'. |
+| ? | `Optional` Matches 0 or 1 of the preceding item, effectively making it optional. | In the example 'color colour', `coulou?r` matches both '`color` `colour`'. |
+| {n,m} | `Quantifier`: `{n,m}` matches between `n` and `m`. | `{2,6}` will match 2 to 6 like in our example above. | 
+| {n} | `Quantifier`: `{n}` matches exactly `n` occurences. | `{6}` will match exactly 6. |
+| {n,} | `Quantifier`: `{n,}`matches at least `n` occurences. | `{6,}`, will match 6 or more. |
+| {n,x} | `Quantifier`: `{n,x}` matches the pattern from a minimum of `n` number of times to a maximum of `x` number of times. |  |
+| Alternation | Description | Example |
+| ----------- | ----------- | ------- |
+| | | `Alternation` acts like a boolean OR. Matches the expression before or after the `|`. It can operate within a group or on a whole expression. The patterns will be tested in order. | In 'bad bud bod bed bid', `b(a|e|i)d` matches '`bad` bud bod `bed` `bid`'. |
+| Character Classes | Description | Example |
+| ----------------- | ----------- | ------- |
+| [ABC] | `Character Set` matches any character in the set. | If desiring to find/match the letters "b" or "d" you'd use `[bd]` |
+| [^ABC] | `Negated Set` matches any character that is not in the set. | If desiring to find/match all letters besides `"h"` or `"o"` in the word `"hello"`, only the letters `"ell"` would match or be considered valid. |
+| [A-Z] | `Range` matches a character having a character code between the two specified characters inclusive. | If wanting to match or validate all letters of the alphabet, including `a-z` in brackets `[]` like `[a-z]` would allow this. If you did `[c-f]`, only the letters "c", "d", "e" |
+| . | `Dot` matches any character except the newline characters/linebreakes. `.` is equivalent to `[^\n\r]`. | If you have the regex pattern `a.b`, it could match "aab", "axb", "a1b" "a@b" and so on. |
+| \s | `Match Any: Whitespace` matches a single whitespace character, including spaces, tabs, and line breaks. | If using `\s` in a phrase or sentence that has spaces inbetween words, those spaces would be matched. | 
+| \S | `Match Any: Not Whitespace` matches any character that is NOT a whitespace character | If using `\S`, everything but spaces, tabs or linebreaks would match. |
+| \w | `Word` matches any word character (alphanumeric & underscore). Only matches low-ascii characters (no accented or non-roman characters). | Equivalent to [A-Za-z0-9_]. |
+| \W | `Not Word` matches any character that is NOT a word character (alphanumeric & underscore). | Equivalent to [^A-Za-z0-9_]. |
+| \d | `Digit` matches any digit character (0-9). | Equivalent to [0-9]. |
+| \D | `Not Digit` matches any character that is not a digit character (0-9). | Equivalent to [^0-9]. |
+| Flags | Description | Example |
+| ----- | ----------- | ------- |
+| i | `Ignore Case` makes the whole expression case-insensitive. | / aBc/i would match AbC |
+| g | `Global Search` retains the index of the last match, allowing subsequent searches to start from the end of the previous match. | Without the global flag `g`, subsequent searches will return the same match. |
+| m | `Multiline` will match the start and end of a line with beginning and end anchors `^` and `$` when the multiline flag is enabled. | Something to note: Patterns such as `/^[\s\S]+$/m` may return matches that span multiple lines because the anchors will match the start/end of any line | 
+| u | `Unicode` can use extended unicode escapes in the form `\x{FFFFF}` when enabled. | Something to note: It also makes other escapes stricter, causing unrecognized escapes, for example: `\j` to throw an error. |
+| y | `Sticky` will only match from its lastIndex position and ignores the global `g` flag if set. |  |
+| s | `Dotall` or `Dot` `.` will match any character, including newline. |  |
+| Groups & Capturing | Description | Example |
+| ------------------- | ----------- | ------- |
+| (ABC) | `Capturing Group` groups multiple tokens together and creates a capture group for extracting a substring or using a backreference. | Using `(ha)+` for 'hahaha haa hah!' will capture the `ha``ha``ha` `ha`a `ha`h! portion of it |
+| (?<name>ABC) | `Named Capturing Group` creates a capturing group that can be referenced via the specified name. |  |
+| \1 | `Numeric Reference` matches the results of a capture group. | \1 matches the results of the first capture group & \3 matches the third. In the example `(\w)a\1`, `hah` `dad` bad dab `gag` gab would be matched in 'hah dad bad dab gag gab'. |
+| (?:ABC) | `Non-Capturing Group` groups multiple tokens together without creating a capture group. | In 'hahaha haa hah!', `(?:ha)+` would match `hahaha` `ha`a `ha`h!. |
+| Bracket Expressions | Description | Example |
+| ------------------- | ----------- | ------- |
+| [a-z] | The string can contain any lowercase letter between letters a-z | `[a-d]` would include and match the lowercase letters 'a', 'b', 'c', and 'd'. |
+| [A-Z] | The string can contain any uppercase letter between letters A-Z | `[D-H]` would include and match the uppercase letters 'D', 'E', 'F', 'G', and 'H'. |
+| [0-9] | The string can contain any number between 0-9. | `[1-4]` would only include or match numbers '1', '2', '3', and '4'. |
+| [_-] | The string can contain an underscore or hyphen. Both the underscore and the hyphen are called special characters. In this case, we only want t astring that includes `_` or `-`. | Important to note: the hyphen `-` is NOT the same hyphen that we used in our aplhanumeric ranges. In bracket expressions, special characters that we want to include follow alphanumeric charcter ranges within the brackets. |
+| Back-Reference | Description | Example |
+| -------------- | ----------- | ------- |
+| \n | Where `n` is a positive integer, a back-reference to the last substring matching the `n` parenthetical in the regular expression. | `/apple(,)\sorange\1/` matches 'apple, orange' in 'apple, orange, cherry, peach'. |
+| \k<Name> | A back-reference to the last substring matching the 'Named Capture Group' specified by `<Name>`. | `/(?<title>\w+)`, yes `\k<title>/` matches 'Sir, yes Sir' in 'Do you copy? Sir, yes Sir!'. In this example, `\k` is used literally to indicate the beginning of a back reference to a Named capture group. |
+| Lookahead & Lookbehind | Description | Example |
+| ------------------------ | ----------- | ------- |
+| (?=ABC) | `Positive Lookahead` matches a group after the main expression without including it in the result. | In the example of '1pt 2px 3em 4px', `\d(?=px)` matches '1pt `2`px 3em `4`px'. |
+| (?!ABC) | `Negative Lookahead` specifies a group that cannot match after the main expression. If it matches, the result is discarded. | In the example of '1pt 2px 3em 4px', `\d(?!px)` matches '`1`pt 2px `3`em 4px'. |
+| (?<=ABC) | `Positive Lookbehind` matches a group before the main expression without including it in the result. |  |
+| (?<!ABC) | `Negative Lookbehind` specifies a group that cannot match before the main expression. If it matches, the result is discarded. |  |
+| x(?=y) | `Lookahead Assertion` matches `x` only if `x` is followed by `y`. | `/Jack(?=Sprat)/` matches 'Jack' only if it is followed by 'Sprat'. `/Jack(?=Sprat|Frost)/` matches 'Jack' only if it is followed by 'Sprat' or 'Frost'. However, neither 'Sprat' nor 'Frost' is part of the match results. |
+| x(?!y) | `Negative Lookahead Assertion` matches `x` only if `x` is not followed by `y`. | `/\d+(?!\.)/` matches a number only if it is not followed by a decimal point. `/\d+(?!\.)/.exec('3.141')` matches '141' but not '3'. |
+| (?<=y)x | `Lookbehind Assertion` matches `x` only if `x` is preceded by `y`. | `/(?<=Jack)Sprat/` matches 'Sprat' only if it is preceded by 'Jack'. `/(?<=Jack|Tom)Sprat/` matches 'Sprat' only if it is preceded by 'Jack' or 'Tom'. However, neither 'Jack' nor 'Tom' is part of the match results. |
+| (?<!y>)x | `Negative Lookbehind Assertion` | `/(?<!-)\d+/` matches a number only if it is not preceded by a minus sign. `/(?<!-)\d+/.exec('3')` matches "3". `/(?<!-)\d+/.exec('-3')` match is not found because the number is preceded by the minus sign. |
+
 
 
 ## Author
