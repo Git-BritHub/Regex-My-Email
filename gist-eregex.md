@@ -6,7 +6,7 @@ A Regular Expression (Regex) tutorial for matching an email
 
 In this tutorial, we'll be covering the regex components used to verify a user's provided email. The following regex is a simple and common one used for matching an email to ensure its validity:
 <br><code> /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ </code></br>
-Depending on how strict you'd like your email validation process to be, the regex needed for matching an email will differ. We'll go over what each character and symbol does with a detailed description of each type.
+Depending on how strict you'd like your email validation process to be, the regex needed for matching an email will differ. We'll go over what each character, symbol and expression does in great detail. For a quick-reference table and a quick break-down of the Regex characters, symbols and expressions that go into matching an email, feel free to skip ahead to my [Conclusion and Quick-Reference Table](#conclusion-and-quick-reference-table) section of this tutorial. 
 
 ## Table of Contents
 
@@ -21,6 +21,7 @@ Depending on how strict you'd like your email validation process to be, the rege
 - [Boundaries](#boundaries)
 - [Back-references](#back-references)
 - [Look-ahead and Look-behind](#look-ahead-and-look-behind)
+- [Conclusion and Quick-Reference Table](#conclusion-and-quick-reference-table)
 - [Author](#author)
 
 ## Regex Components
@@ -139,6 +140,7 @@ Groups group multiple patterns as a whole, and capturing groups provide extra su
 | (?<=y)x | `Lookbehind Assertion` matches `x` only if `x` is preceded by `y`. | `/(?<=Jack)Sprat/` matches 'Sprat' only if it is preceded by 'Jack'. `/(?<=Jack|Tom)Sprat/` matches 'Sprat' only if it is preceded by 'Jack' or 'Tom'. However, neither 'Jack' nor 'Tom' is part of the match results. |
 | (?<!y>)x | `Negative Lookbehind Assertion` | `/(?<!-)\d+/` matches a number only if it is not preceded by a minus sign. `/(?<!-)\d+/.exec('3')` matches "3". `/(?<!-)\d+/.exec('-3')` match is not found because the number is preceded by the minus sign. |
 
+## Conclusion and Quick-Reference Table
 
 
 ## Author
