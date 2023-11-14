@@ -33,27 +33,27 @@ Anchors are unique in that they match a position within a string, not a characte
 In our 'Matching an Email' regex: `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`, the characters `^` and `$` are both considered to be anchors. `^` signifies the beginning of the string while `$` signifies the end. </br>
 For your reference, here is a table depicting anchors with their description:</br>
 
-| Anchor | Description |
-| ------ | ----------- |
-| ^ | `Beginning` Matches the beginning of the string, or the beginning of a line if the multiline flag (m) is enabled. |
-| $ | `End` Matches the end of the string, or the end of a line if the multiline flag (m) is enabled. |
-| \b | `Word Boundary` Matches a word boundary position between a word character and non-word character or position (start / end of string). |
-| \B | `Not Word Boundary` Matches any position that is not a word boundary. This matches a position, not a character. |
+| Anchor | Description | Example |
+| ------ | ----------- | ------- |
+| ^ | `Beginning` Matches the beginning of the string, or the beginning of a line if the multiline flag (m) is enabled. | In the example 'she sells seashells', `^\w+` matches the word 'she'. |
+| $ | `End` Matches the end of the string, or the end of a line if the multiline flag (m) is enabled. | In the example 'she sells seashells', `\w+$` matches the word 'seashells'. |
+| \b | `Word Boundary` Matches a word boundary position between a word character and non-word character or position (start / end of string). | In the example 'she sells seashells', `s\b` matches the letters 's' in 'she sells`s` seashell`s`'. |
+| \B | `Not Word Boundary` Matches any position that is not a word boundary. This matches a position, not a character. | In the example 'she sells seashells', `s\B` matches the letters 's' in '`s`he `s`ells `s`ea`s`hells'. |
 
 ### Quantifiers
 Quantifiers indicate that the preceding token must be matched a certain number of times. By default, quantifiers are greedy and will match as many characters as possible! In our 'Matching an Email' regex `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`, the `{2,6}` portion of our regex is a quantifier and it matches 2 to 6 lowercase letters or dots for the TLD part of a web address (.com, .net, .uk, etc). </br>
 For example, let's say we have email addresses named `email@example.com` or `email@example.co`. Both email addresses would be accepted as a match and validated since `.com` and `.co` fall within the 2-6 character range. An email such as `email@example.c` or `email@example.coooooom` would not pass email validation.</br>
 For your reference, here is a table depicting quantifiers with their description:</br>
 
-| Quantifiers | Description |
-| ----------- | ----------- |
-| * | `Star` Matches 0 or more of the preceding item. |
-| + | `Plus` Matches 1 or more of the preceding item. |
-| ? | `Optional` Matches 0 or 1 of the preceding item, effectively making it optional. |
-| {n,m} | `Quantifier`: `{n,m}` matches between `n` and `m`. For example, `{2,6}` will match 2 to 6 like in our example above. | 
-| {n} | `Quantifier`: `{n}` matches exactly `n` occurences. For example example, `{6}` will match exactly 6. |
-| {n,} | `Quantifier`: `{n,}`matches at least `n` occurences. For for example, `{6,}`, will match 6 or more. |
-| {n,x} | `Quantifier`: `{n,x}` matches the pattern from a minimum of `n` number of times to a maximum of `x` number of times. |
+| Quantifiers | Description | Example |
+| ----------- | ----------- | ------- |
+| * | `Star` Matches 0 or more of the preceding item. | In the example 'b be bee beer beers', `b\w*` matches '`b``be``bee``beer``beers`'. |
+| + | `Plus` Matches 1 or more of the preceding item. | In the example 'b be bee beer beers', `b\w+` matches 'b `be` `bee` `beer` `beers`'. |
+| ? | `Optional` Matches 0 or 1 of the preceding item, effectively making it optional. | In the example 'color colour', `coulou?r` matches both '`color` `colour`'. |
+| {n,m} | `Quantifier`: `{n,m}` matches between `n` and `m`. | `{2,6}` will match 2 to 6 like in our example above. | 
+| {n} | `Quantifier`: `{n}` matches exactly `n` occurences. | `{6}` will match exactly 6. |
+| {n,} | `Quantifier`: `{n,}`matches at least `n` occurences. | `{6,}`, will match 6 or more. |
+| {n,x} | `Quantifier`: `{n,x}` matches the pattern from a minimum of `n` number of times to a maximum of `x` number of times. |  |
 
 ### OR Operator
 An OR Operator is a logical operator used in programming and various other contexts to perform a choice between two or more alternatives. In a regex, the symbol `|` acts as an OR Operator. How is this useful to our regex `^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$` you may ask? In this instance, you could use this alternation `|` to match email addresses from different email providers like Gmail, Yahoo, Outlook, etc. For example:</br>
