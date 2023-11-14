@@ -156,7 +156,7 @@ Groups group multiple patterns as a whole, and capturing groups provide extra su
 | {n} | `Quantifier`: `{n}` matches exactly `n` occurences. | `{6}` will match exactly 6. |
 | {n,} | `Quantifier`: `{n,}`matches at least `n` occurences. | `{6,}`, will match 6 or more. |
 | {n,x} | `Quantifier`: `{n,x}` matches the pattern from a minimum of `n` number of times to a maximum of `x` number of times. |  |
-| `Alternation` |  |  |
+| `OR Operator` |  |  |
 | I | `Alternation` acts like a boolean OR. Matches the expression before or after this alternation. It can operate within a group or on a whole expression. The patterns will be tested in order. |  |
 | `Character Classes` |  |  |
 | [ABC] | `Character Set` matches any character in the set. | If desiring to find/match the letters "b" or "d" you'd use `[bd]` |
