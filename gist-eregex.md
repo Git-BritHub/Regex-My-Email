@@ -90,6 +90,15 @@ So in regards to our regex `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/` f
 | s | `Dotall` or `Dot` `.` will match any character, including newline. |  |
 
 ### Grouping and Capturing
+Groups allow you to combine a sequence of tokens to operate on them together. Capture groups can be referenced by a backreference and accessed separately in the results. For reference, I've included a table of Groups and References below:
+
+| Groups & References | Description | Example |
+| ------------------- | ----------- | ------- |
+| (ABC) | `Capturing Group` groups multiple tokens together and creates a capture group for extracting a substring or using a backreference. | Using `(ha)+` for 'hahaha haa hah!' will capture the `ha``ha``ha` `ha`a `ha`h! portion of it |
+| (?<name>ABC) | `Named Capturing Group` creates a capturing group that can be referenced via the specified name. |  |
+| \1 | `Numeric Reference` matches the results of a capture group. | \1 matches the results of the first capture group & \3 matches the third. In the example `(\w)a\1`, `hah` `dad` bad dab `gag` gab would be matched in 'hah dad bad dab gag gab'. |
+| (?:ABC) | `Non-Capturing Group` groups multiple tokens together without creating a capture group. | In 'hahaha haa hah!', `(?:ha)+` would match `hahaha` `ha`a `ha`h!. |
+
 
 ### Bracket Expressions
 
