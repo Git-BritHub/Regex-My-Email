@@ -123,7 +123,7 @@ Groups group multiple patterns as a whole, and capturing groups provide extra su
 | Back-Reference | Description | Example |
 | -------------- | ----------- | ------- |
 | \n | Where `n` is a positive integer, a back-reference to the last substring matching the `n` parenthetical in the regular expression. | `/apple(,)\sorange\1/` matches 'apple, orange' in 'apple, orange, cherry, peach'. |
-| \k<Name> | A back-reference to the last substring matching the 'Named Capture Group' specified by `<Name>`. | `/(?<title>\w+)`, yes `\k<title>/` matches 'Sir, yes Sir' in 'Do you copy? Sir, yes Sir!'. |
+| \k<Name> | A back-reference to the last substring matching the 'Named Capture Group' specified by `<Name>`. | `/(?<title>\w+)`, yes `\k<title>/` matches 'Sir, yes Sir' in 'Do you copy? Sir, yes Sir!'. In this example, `\k` is used literally to indicate the beginning of a back reference to a Named capture group. |
 
 ### Look-ahead and Look-behind
 
