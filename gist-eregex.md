@@ -51,6 +51,7 @@ For your reference, here is a table depicting quantifiers with their description
 | {n,m} | `Quantifier`: `{n,m}` matches between `n` and `m`. For example, `{2,6}` will match 2 to 6 like in our example above. | 
 | {n} | `Quantifier`: `{n}` matches exactly `n` occurences. For example example, `{6}` will match exactly 6. |
 | {n,} | `Quantifier`: `{n,}`matches at least `n` occurences. For for example, `{6,}`, will match 6 or more. |
+| {n,x} | `Quantifier`: `{n,x}` matches the pattern from a minimum of `n` number of times to a maximum of `x` number of times. |
 
 ### OR Operator
 An OR Operator is a logical operator used in programming and various other contexts to perform a choice between two or more alternatives. In a regex, the symbol `|` acts as an OR Operator. How is this useful to our regex `^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$` you may ask? In this instance, you could use this alternation `|` to match email addresses from different email providers like Gmail, Yahoo, Outlook, etc. For example:</br>
@@ -110,7 +111,7 @@ Anything inside a set of square brackets `[]` represents a range of characters t
 | [_-] | The string can contain an underscore or hyphen. Both the underscore and the hyphen are called special characters. In this case, we only want t astring that includes `_` or `-`. | Important to note: the hyphen `-` is NOT the same hyphen that we used in our aplhanumeric ranges. In bracket expressions, special characters that we want to include follow alphanumeric charcter ranges within the brackets. |
 
 ### Greedy and Lazy Match
-
+As mentioned above in the [Quantifiers](#quantifiers) section, `Quantifiers` are inherently `greedy`. They match as many occurences of particular patterns as possible. Each of these quantifierrs can be made `lazy` by adding the `?` symbol after it, meaning it will match as few occurences as possible. For example, in the lazy quantifier `b\w+?` the following charcters would be matched: 'b `be` `be`e `be`er `be`ers'. Feel free to take another look at the table provided in the [Quantifiers](#quantifiers) section to view these `greedy` quantifiers and remember that adding the `?` symbol to any of those quantifiers will make them `lazy`. 
 ### Boundaries
 
 ### Back-references
