@@ -157,7 +157,7 @@ Groups group multiple patterns as a whole, and capturing groups provide extra su
 | {n,} | `Quantifier`: `{n,}`matches at least `n` occurences. | `{6,}`, will match 6 or more. |
 | {n,x} | `Quantifier`: `{n,x}` matches the pattern from a minimum of `n` number of times to a maximum of `x` number of times. |  |
 | `Alternation` |  |  |
-| | | `Alternation` acts like a boolean OR. Matches the expression before or after the `|`. It can operate within a group or on a whole expression. The patterns will be tested in order. | In 'bad bud bod bed bid', `b(a|e|i)d` matches '`bad` bud bod `bed` `bid`'. |
+| I | `Alternation` acts like a boolean OR. Matches the expression before or after this alternation. It can operate within a group or on a whole expression. The patterns will be tested in order. |  |
 | `Character Classes` |  |  |
 | [ABC] | `Character Set` matches any character in the set. | If desiring to find/match the letters "b" or "d" you'd use `[bd]` |
 | [^ABC] | `Negated Set` matches any character that is not in the set. | If desiring to find/match all letters besides `"h"` or `"o"` in the word `"hello"`, only the letters `"ell"` would match or be considered valid. |
