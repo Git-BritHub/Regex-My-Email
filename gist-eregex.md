@@ -99,8 +99,15 @@ Groups allow you to combine a sequence of tokens to operate on them together. Ca
 | \1 | `Numeric Reference` matches the results of a capture group. | \1 matches the results of the first capture group & \3 matches the third. In the example `(\w)a\1`, `hah` `dad` bad dab `gag` gab would be matched in 'hah dad bad dab gag gab'. |
 | (?:ABC) | `Non-Capturing Group` groups multiple tokens together without creating a capture group. | In 'hahaha haa hah!', `(?:ha)+` would match `hahaha` `ha`a `ha`h!. |
 
-
 ### Bracket Expressions
+Anything inside a set of square brackets `[]` represents a range of characters that we want to match. Thes patterns are known as bracket expressions, but they are also known as a positive character group because they outline the characters we want to include. It's important to note that a bracket expression can be turned into a `negative character group` by adding the `^` symbol to the beginning of the expression inside the brackets. For reference, I've included a table of Bracket Expressions below:
+
+| Bracket Expressions | Description | Example |
+| ------------------- | ----------- | ------- |
+| [a-z] | The string can contain any lowercase letter between letters a-z | `[a-d]` would include and match the lowercase letters 'a', 'b', 'c', and 'd'. |
+| [A-Z] | The string can contain any uppercase letter between letters A-Z | `[D-H]` would include and match the uppercase letters 'D', 'E', 'F', 'G', and 'H'. |
+| [0-9] | The string can contain any number between 0-9. | `[1-4]` would only include or match numbers '1', '2', '3', and '4'. |
+| [_-] | The string can contain an underscore or hyphen. Both the underscore and the hyphen are called special characters. In this case, we only want t astring that includes `_` or `-`. | Important to note: the hyphen `-` is NOT the same hyphen that we used in our aplhanumeric ranges. In bracket expressions, special characters that we want to include follow alphanumeric charcter ranges within the brackets. |
 
 ### Greedy and Lazy Match
 
