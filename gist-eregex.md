@@ -80,6 +80,15 @@ So in regards to our regex `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/` f
 
 ### Flags
 
+| Flags | Description | Example |
+| ----- | ----------- | ------- |
+| i | `Ignore Case` makes the whole expression case-insensitive. | / aBc/i would match AbC |
+| g | `Global Search` retains the index of the last match, allowing subsequent searches to start from the end of the previous match. | Without the global flag `g`, subsequent searches will return the same match. |
+| m | `Multiline` will match the start and end of a line with beginning and end anchors `^` and `$` when the multiline flag is enabled. | Something to note: Patterns such as `/^[\s\S]+$/m` may return matches that span multiple lines because the anchors will match the start/end of any line | 
+| u | `Unicode` can use extended unicode escapes in the form `\x{FFFFF}` when enabled. | Something to note: It also makes other escapes stricter, causing unrecognized escapes, for example: `\j` to throw an error. |
+| y | `Sticky` will only match from its lastIndex position and ignores the global `g` flag if set. |  |
+| s | `Dotall` or `Dot` `.` will match any character, including newline. |  |
+
 ### Grouping and Capturing
 
 ### Bracket Expressions
