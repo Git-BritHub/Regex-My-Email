@@ -126,6 +126,20 @@ Groups group multiple patterns as a whole, and capturing groups provide extra su
 | \k<Name> | A back-reference to the last substring matching the 'Named Capture Group' specified by `<Name>`. | `/(?<title>\w+)`, yes `\k<title>/` matches 'Sir, yes Sir' in 'Do you copy? Sir, yes Sir!'. In this example, `\k` is used literally to indicate the beginning of a back reference to a Named capture group. |
 
 ### Look-ahead and Look-behind
+`Lookaround` lets you match a group before (`Lookbehind`) or after (`Lookahead`) your main pattern withough including it in the result. Negative lookarounds specify a group that can NOT match before or after the pattern. For reference, I've included a table of Lookaheads and Lookbehinds below:
+
+| Lookahead & Lookbehind | Description | Example |
+| ------------------------ | ----------- | ------- |
+| (?=ABC) | `Positive Lookahead` matches a group after the main expression without including it in the result. | In the example of '1pt 2px 3em 4px', `\d(?=px)` matches '1pt `2`px 3em `4`px'. |
+| (?!ABC) | `Negative Lookahead` specifies a group that cannot match after the main expression. If it matches, the result is discarded. | In the example of '1pt 2px 3em 4px', `\d(?!px)` matches '`1`pt 2px `3`em 4px'. |
+| (?<=ABC) | `Positive Lookbehind` matches a group before the main expression without including it in the result. |  |
+| (?<!ABC) | `Negative Lookbehind` specifies a group that cannot match before the main expression. If it matches, the result is discarded. |  |
+| x(?=y) | `Lookahead Assertion` matches `x` only if `x` is followed by `y`. | `/Jack(?=Sprat)/` matches 'Jack' only if it is followed by 'Sprat'. `/Jack(?=Sprat|Frost)/` matches 'Jack' only if it is followed by 'Sprat' or 'Frost'. However, neither 'Sprat' nor 'Frost' is part of the match results. |
+| x(?!y) | `Negative Lookahead Assertion` matches `x` only if `x` is not followed by `y`. | `/\d+(?!\.)/` matches a number only if it is not followed by a decimal point. `/\d+(?!\.)/.exec('3.141')` matches '141' but not '3'. |
+| (?<=y)x | `Lookbehind Assertion` matches `x` only if `x` is preceded by `y`. | `/(?<=Jack)Sprat/` matches 'Sprat' only if it is preceded by 'Jack'. `/(?<=Jack|Tom)Sprat/` matches 'Sprat' only if it is preceded by 'Jack' or 'Tom'. However, neither 'Jack' nor 'Tom' is part of the match results. |
+| (?<!y>)x | `Negative Lookbehind Assertion` | `/(?<!-)\d+/` matches a number only if it is not preceded by a minus sign. `/(?<!-)\d+/.exec('3')` matches "3". `/(?<!-)\d+/.exec('-3')` match is not found because the number is preceded by the minus sign. |
+
+
 
 ## Author
 This tutorial was created by [Brittany Brimley](https://github.com/Git-BritHub). As a software developer, I am always 'nerdy happy' when I come across a nice and straightforward tutorial or cheat-sheet for quick references. Whether you are new to software development or a more experienced developer looking for a quick reference tool, my hope is that this tutorial will provide that 'nerdy joy' and give you more time to focus on other aspects of your project. Please don't hesitate to reach out through GitHub if you have any questions or suggestions that could help further improve this tutorial. 
