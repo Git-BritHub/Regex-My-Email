@@ -130,7 +130,7 @@ Groups group multiple patterns as a whole, and capturing groups provide extra su
 `Lookaround` lets you match a group before (`Lookbehind`) or after (`Lookahead`) your main pattern withough including it in the result. Negative lookarounds specify a group that can NOT match before or after the pattern. For reference, I've included a table of Lookaheads and Lookbehinds below:
 
 | Lookahead & Lookbehind | Description | Example |
-| ------------------------ | ----------- | ------- |
+| ---------------------- | ----------- | ------- |
 | (?=ABC) | `Positive Lookahead` matches a group after the main expression without including it in the result. | In the example of '1pt 2px 3em 4px', `\d(?=px)` matches '1pt `2`px 3em `4`px'. |
 | (?!ABC) | `Negative Lookahead` specifies a group that cannot match after the main expression. If it matches, the result is discarded. | In the example of '1pt 2px 3em 4px', `\d(?!px)` matches '`1`pt 2px `3`em 4px'. |
 | (?<=ABC) | `Positive Lookbehind` matches a group before the main expression without including it in the result. |  |
@@ -142,13 +142,13 @@ Groups group multiple patterns as a whole, and capturing groups provide extra su
 
 ## Conclusion and Regex Cheatsheet
 | Characters | Description | Example |
-| ------ | ----------- | ------- |
-| `Anchors` |  |  |
+| ---------- | ----------- | ------- |
+| `Anchors` |
 | ^ | `Beginning` Matches the beginning of the string, or the beginning of a line if the multiline flag (m) is enabled. | In the example 'she sells seashells', `^\w+` matches the word 'she'. |
 | $ | `End` Matches the end of the string, or the end of a line if the multiline flag (m) is enabled. | In the example 'she sells seashells', `\w+$` matches the word 'seashells'. |
 | \b | `Word Boundary` Matches a word boundary position between a word character and non-word character or position (start / end of string). | In the example 'she sells seashells', `s\b` matches the letters 's' in 'she sells`s` seashell`s`'. |
 | \B | `Not Word Boundary` Matches any position that is not a word boundary. This matches a position, not a character. | In the example 'she sells seashells', `s\B` matches the letters 's' in '`s`he `s`ells `s`ea`s`hells'. |
-| `Quantifiers` |  |  |
+| `Quantifiers` |
 | * | `Star` Matches 0 or more of the preceding item. | In the example 'b be bee beer beers', `b\w*` matches '`b``be``bee``beer``beers`'. |
 | + | `Plus` Matches 1 or more of the preceding item. | In the example 'b be bee beer beers', `b\w+` matches 'b `be` `bee` `beer` `beers`'. |
 | ? | `Optional` Matches 0 or 1 of the preceding item, effectively making it optional. | In the example 'color colour', `coulou?r` matches both '`color` `colour`'. |
@@ -156,9 +156,9 @@ Groups group multiple patterns as a whole, and capturing groups provide extra su
 | {n} | `Quantifier`: `{n}` matches exactly `n` occurences. | `{6}` will match exactly 6. |
 | {n,} | `Quantifier`: `{n,}`matches at least `n` occurences. | `{6,}`, will match 6 or more. |
 | {n,x} | `Quantifier`: `{n,x}` matches the pattern from a minimum of `n` number of times to a maximum of `x` number of times. |  |
-| `OR Operator` |  |  |
+| `OR Operator` |
 | I | `Alternation` acts like a boolean OR. Matches the expression before or after this alternation. It can operate within a group or on a whole expression. The patterns will be tested in order. |  |
-| `Character Classes` |  |  |
+| `Character Classes` |
 | [ABC] | `Character Set` matches any character in the set. | If desiring to find/match the letters "b" or "d" you'd use `[bd]` |
 | [^ABC] | `Negated Set` matches any character that is not in the set. | If desiring to find/match all letters besides `"h"` or `"o"` in the word `"hello"`, only the letters `"ell"` would match or be considered valid. |
 | [A-Z] | `Range` matches a character having a character code between the two specified characters inclusive. | If wanting to match or validate all letters of the alphabet, including `a-z` in brackets `[]` like `[a-z]` would allow this. If you did `[c-f]`, only the letters "c", "d", "e" |
@@ -169,27 +169,27 @@ Groups group multiple patterns as a whole, and capturing groups provide extra su
 | \W | `Not Word` matches any character that is NOT a word character (alphanumeric & underscore). | Equivalent to [^A-Za-z0-9_]. |
 | \d | `Digit` matches any digit character (0-9). | Equivalent to [0-9]. |
 | \D | `Not Digit` matches any character that is not a digit character (0-9). | Equivalent to [^0-9]. |
-| `Flags` |  |  |
+| `Flags` |
 | i | `Ignore Case` makes the whole expression case-insensitive. | / aBc/i would match AbC |
 | g | `Global Search` retains the index of the last match, allowing subsequent searches to start from the end of the previous match. | Without the global flag `g`, subsequent searches will return the same match. |
 | m | `Multiline` will match the start and end of a line with beginning and end anchors `^` and `$` when the multiline flag is enabled. | Something to note: Patterns such as `/^[\s\S]+$/m` may return matches that span multiple lines because the anchors will match the start/end of any line | 
 | u | `Unicode` can use extended unicode escapes in the form `\x{FFFFF}` when enabled. | Something to note: It also makes other escapes stricter, causing unrecognized escapes, for example: `\j` to throw an error. |
 | y | `Sticky` will only match from its lastIndex position and ignores the global `g` flag if set. |  |
 | s | `Dotall` or `Dot` `.` will match any character, including newline. |  |
-| `Groups & Capturing` |  |  |
+| `Groups & Capturing` |
 | (ABC) | `Capturing Group` groups multiple tokens together and creates a capture group for extracting a substring or using a backreference. | Using `(ha)+` for 'hahaha haa hah!' will capture the `ha``ha``ha` `ha`a `ha`h! portion of it |
 | (?<name>ABC) | `Named Capturing Group` creates a capturing group that can be referenced via the specified name. |  |
 | \1 | `Numeric Reference` matches the results of a capture group. | \1 matches the results of the first capture group & \3 matches the third. In the example `(\w)a\1`, `hah` `dad` bad dab `gag` gab would be matched in 'hah dad bad dab gag gab'. |
 | (?:ABC) | `Non-Capturing Group` groups multiple tokens together without creating a capture group. | In 'hahaha haa hah!', `(?:ha)+` would match `hahaha` `ha`a `ha`h!. |
-| `Bracket Expressions` |  |  |
+| `Bracket Expressions` |
 | [a-z] | The string can contain any lowercase letter between letters a-z | `[a-d]` would include and match the lowercase letters 'a', 'b', 'c', and 'd'. |
 | [A-Z] | The string can contain any uppercase letter between letters A-Z | `[D-H]` would include and match the uppercase letters 'D', 'E', 'F', 'G', and 'H'. |
 | [0-9] | The string can contain any number between 0-9. | `[1-4]` would only include or match numbers '1', '2', '3', and '4'. |
 | [_-] | The string can contain an underscore or hyphen. Both the underscore and the hyphen are called special characters. In this case, we only want t astring that includes `_` or `-`. | Important to note: the hyphen `-` is NOT the same hyphen that we used in our aplhanumeric ranges. In bracket expressions, special characters that we want to include follow alphanumeric charcter ranges within the brackets. |
-| `Back-Reference` |  |  |
+| `Back-Reference` |
 | \n | Where `n` is a positive integer, a back-reference to the last substring matching the `n` parenthetical in the regular expression. | `/apple(,)\sorange\1/` matches 'apple, orange' in 'apple, orange, cherry, peach'. |
 | \k<Name> | A back-reference to the last substring matching the 'Named Capture Group' specified by `<Name>`. | `/(?<title>\w+)`, yes `\k<title>/` matches 'Sir, yes Sir' in 'Do you copy? Sir, yes Sir!'. In this example, `\k` is used literally to indicate the beginning of a back reference to a Named capture group. |
-| `Lookahead & Lookbehind` |  |  |
+| `Lookahead & Lookbehind` |
 | (?=ABC) | `Positive Lookahead` matches a group after the main expression without including it in the result. | In the example of '1pt 2px 3em 4px', `\d(?=px)` matches '1pt `2`px 3em `4`px'. |
 | (?!ABC) | `Negative Lookahead` specifies a group that cannot match after the main expression. If it matches, the result is discarded. | In the example of '1pt 2px 3em 4px', `\d(?!px)` matches '`1`pt 2px `3`em 4px'. |
 | (?<=ABC) | `Positive Lookbehind` matches a group before the main expression without including it in the result. |  |
