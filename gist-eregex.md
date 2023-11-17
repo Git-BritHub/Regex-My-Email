@@ -5,8 +5,9 @@ A Regular Expression (Regex) tutorial for matching an email
 ## Summary
 
 In this tutorial, we'll be covering the regex components used to verify a user's provided email. The following regex is a simple and common one used for matching an email to ensure its validity:
-<br><code> /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ </code></br>
-Depending on how strict you'd like your email validation process to be, the regex needed for matching an email will differ. We'll go over what each character, symbol and expression does in great detail. For a quick-reference table and a quick break-down of the Regex characters, symbols and expressions that go into matching an email, feel free to skip ahead to my [Conclusion and Regex Cheatsheet](#conclusion-and-regex-cheatsheet) section of this tutorial. 
+### <code> /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ </code>
+Depending on how strict you'd like your email validation process to be, the regex needed for matching an email will differ. Whether it's a character used specifically in our 'Matching an Email' regex or not, I'll go over what each character, symbol and expression does in great detail.</br>
+For a complete regex quick-reference table and a quick break-down of the Regex characters, symbols and expressions that go into this 'Matching an Email' Regex, feel free to skip ahead to my [Brief Break-Down and Regex Cheatsheet](#brief-break-down-and-regex-cheatsheet) section of this tutorial. 
 
 ## Table of Contents
 
@@ -21,12 +22,12 @@ Depending on how strict you'd like your email validation process to be, the rege
 - [Boundaries](#boundaries)
 - [Back-references](#back-references)
 - [Look-ahead and Look-behind](#look-ahead-and-look-behind)
-- [Conclusion and Regex Cheatsheet](#conclusion-and-regex-cheatsheet)
+- [Brief Break-Down and Regex Cheatsheet](#brief-break-down-and-regex-cheatsheet)
 - [Author](#author)
 
 ## Regex Components
 A regex is considered a literal, so the pattern must be wrapped in forward facing slash characters `/`. As you'll notice, our regex example that matches an email has an opening and closing forward `/` for this very reason.
-<br><code> /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ </code></br>
+### <code> /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ </code>
 
 ### Anchors
 Anchors are unique in that they match a position within a string, not a character.
@@ -140,7 +141,40 @@ Groups group multiple patterns as a whole, and capturing groups provide extra su
 | (?<=y)x | `Lookbehind Assertion` matches `x` only if `x` is preceded by `y`. | `/(?<=Jack)Sprat/` matches 'Sprat' only if it is preceded by 'Jack'. `/(?<=Jack|Tom)Sprat/` matches 'Sprat' only if it is preceded by 'Jack' or 'Tom'. However, neither 'Jack' nor 'Tom' is part of the match results. |
 | (?<!y>)x | `Negative Lookbehind Assertion` | `/(?<!-)\d+/` matches a number only if it is not preceded by a minus sign. `/(?<!-)\d+/.exec('3')` matches "3". `/(?<!-)\d+/.exec('-3')` match is not found because the number is preceded by the minus sign. |
 
-## Conclusion and Regex Cheatsheet
+## Brief Break-Down and Regex Cheatsheet
+### <code> /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ </code>
+1. Anchors:
+    * `^`: Asserts the start of the string.
+    * `$`: Asserts the end of the string.
+2. Quantifiers:
+    * `+`: Matches one or more occurrences of the preceding element.
+    * `{2,6}`: Specifies a range; in this case, it matches between 2 and 6 occurrences.
+3. Character Classes:
+    * `[a-z0-9_\.-]`: Matches any lowercase letter, digit, underscore, dot, or hyphen.
+    * `[\da-z\.-]`: Matches any digit, lowercase letter, dot, or hyphen.
+    * `[a-z\.]`: Matches any lowercase letter or dot.
+4. Flags:
+    * There are no flags used in this regex. Flags modify how the regular expression is interpreted, but none are specified here.
+5. Grouping and Capturing:
+    * ([a-z0-9_\.-]+): Capturing group for the username part of the email.
+    * ([\da-z\.-]+): Capturing group for the domain name part of the email.
+    * ([a-z\.]{2,6}): Capturing group for the top-level domain (TLD) part of the email.
+6. Bracket Expressions:
+    * [a-z0-9_\.-]: Defines a character class for the username.
+    * [\da-z\.-]: Defines a character class for the domain name.
+    * [a-z\.]: Defines a character class for the TLD.
+7. Greedy and Lazy Match:
+    * Greedy matching is the default behavior where the quantifier matches as much as possible. In our email regex, `+` is greedy.
+8. Boundaries:
+    * The `^` and `$` anchors mark the boundaries of the entire string.
+9. Back References:
+    * There are no back references in this regex. Back references are used to match the same text as previously matched by a capturing group.
+10. Look Ahead and Look Behind:
+    * There are no look-ahead or look-behind assertions used in this regex. Look-ahead and look-behind assertions are used to ensure that a certain condition is (or is not) met without including it in the match.</br>
+In short, this regex is designed to validate an email address by breaking it into three main parts: the username, the domain name, and the top-level domain (TLD). It enforces specific character classes for each part and ensures proper structure and length for the email address.
+
+
+
 | Characters | Description | Example |
 | ---------- | ----------- | ------- |
 | `Anchors` |
