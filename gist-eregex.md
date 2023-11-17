@@ -124,7 +124,8 @@ As mentioned above in the [Quantifiers](#quantifiers) section, `Quantifiers` are
 Feel free to take another look at the table provided in the [Quantifiers](#quantifiers) section to view these `greedy` quantifiers and remember that adding the `?` symbol to any of those quantifiers will make them `lazy`.
 
 ### Boundaries
-Boundaries indicate the beginnings and endings of lines and words, and other patters indicating in some way that a match is possible. These inlcude `look-ahead`, `look-behind` (of which we'll cover in a couple of sections), along with conditional expressions. These boundaries include the characters `^`, `$`, `\b`, and `\B` that we covered in the [Anchors](#anchors) section above. As well as `x(?=y)`, `x(?!y)`, `(?<=y)x`, and `(?<!y)x` that we will cover in the [Look-ahead and Look-behind](#look-ahead-and-look-behind) section. 
+Boundaries indicate the beginnings and endings of lines and words, and other patters indicating in some way that a match is possible. These inlcude `look-ahead`, `look-behind` (of which we'll cover in a couple of sections), along with conditional expressions. These boundaries include the characters `^`, `$`, `\b`, and `\B` that we covered in the [Anchors](#anchors) section above. As well as `x(?=y)`, `x(?!y)`, `(?<=y)x`, and `(?<!y)x` that we will cover in the [Look-ahead and Look-behind](#look-ahead-and-look-behind) section.</br>
+In our 'Matching an Email' Regex, boundaries/anchors `^` and `$` mark the boundaries of the entire string. `^` matches the beginning of the entire string and `$` matches the end. 
 
 ### Back-references
 Groups group multiple patterns as a whole, and capturing groups provide extra submatch information when using a regular expression pattern to match against a string. Backreferences refer to a previously captured group in the same regular expression. For reference, I've included a table of Back-References below:
