@@ -44,6 +44,7 @@ For your reference, here is a table depicting anchors with their description:</b
 ### Quantifiers
 Quantifiers indicate that the preceding token must be matched a certain number of times. By default, quantifiers are greedy and will match as many characters as possible! In our 'Matching an Email' regex `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`, the `{2,6}` portion of our regex is a quantifier and it matches 2 to 6 lowercase letters or dots for the TLD part of a web address (.com, .net, .uk, etc). </br>
 For example, let's say we have email addresses named `email@example.com` or `email@example.co`. Both email addresses would be accepted as a match and validated since `.com` and `.co` fall within the 2-6 character range. An email such as `email@example.c` or `email@example.coooooom` would not pass email validation.</br>
+Another Quantifier being used is the `+` quantifier. The `+` ensures that there must be at least one character in the email/username and allows for the username portion to be one or more characters long.</br>
 For your reference, here is a table depicting quantifiers with their description:</br>
 
 | Quantifiers | Description | Example |
@@ -67,7 +68,10 @@ In short, the OR Operator `|` allows you to specify multiple alternative pattern
 
 ### Character Classes
 A character class in a regex defines a set of characters. There are a number of predefined character classes and you can also define your own sets!</br>
-So in regards to our regex `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/` for matching an email, the implimentation of character classes are vital in quickly and effeciently ensuring that an email address provided by the user is valid. For example, the portion enclosed with brackets `[]` in our regex that displays `a-z` (referred to as `Range`) is telling us that a valid email can inlcude letters that range all the way from `"a"` to `"z"`.  Below is a table of more character classes for your reference:</br>
+So in regards to our regex `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/` for matching an email, the implimentation of character classes are vital in quickly and effeciently ensuring that an email address provided by the user is valid. The character classes enclosed within the `[]` brackets, `[a-z0-9_\.-]`, are telling us that our email can have any letter from 'a' to 'z', any numbers from 0 to 9, as well as the option to include an underscore `_`, a dot `.`, or a hyphen `-`.</br>
+The next character set `[\da-z\.-]`. While very similar to our previous mentioned character set, a new character class that we have not yet discussed is `\d`. `\d` is a shorthand character class that represents any digit from 0-9. Why use `\d` as opposed to `0-9` you may ask? Using `\d` is more concise and improves readability, especially when dealing with more complex regular expressions. </br>
+Our final character set `[a-z\.]` uses characters classes that tell us what are email is allowed to have within its TLD (top-level domain) portion of the email address. Here, a-z is telling us again that any letter from 'a' to 'z' are allowed, as well as the dot `.`.</br>
+Below is a table that includes additional character classes for your reference:
 
 | Character Classes | Description | Example |
 | ----------------- | ----------- | ------- |
@@ -83,6 +87,7 @@ So in regards to our regex `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/` f
 | \D | `Not Digit` matches any character that is not a digit character (0-9). | Equivalent to [^0-9]. |
 
 ### Flags
+In our 'Matching an Email' Regex, there are no flags used in this regex. Flags modify how the regular expression is interpreted, but none are specified here. However, I have provided a table below of Flags for your reference:
 
 | Flags | Description | Example |
 | ----- | ----------- | ------- |
@@ -94,7 +99,9 @@ So in regards to our regex `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/` f
 | s | `Dotall` or `Dot` `.` will match any character, including newline. |  |
 
 ### Grouping and Capturing
-Groups allow you to combine a sequence of tokens to operate on them together. Capture groups can be referenced by a backreference and accessed separately in the results. For reference, I've included a table of Groups and Capturing below:
+Groups allow you to combine a sequence of tokens to operate on them together. Capture groups can be referenced by a backreference and accessed separately in the results. In our 'Matching an Email' Regex, `([a-z0-9_\.-]+)` is the capturing group for the username part of the email. The parenthesis `()` are used to define it, the content matched by this group will be captured for further use or extraction. Our next capturing group, `([\da-z\.-]+)` is for the domain name part of the email. Similar to our first capture group that is also enclosed in `()`, it contains the character classes enclosed in `[]`brackets. The final Capture Group in our 'Matching an Email' Regex involves 
+`([a-z\.]{2,6})`; which is used for the top-level domain (TLD) part of the email.
+For reference, I've included a table of Groups and Capturing below:
 
 | Groups & Capturing | Description | Example |
 | ------------------- | ----------- | ------- |
